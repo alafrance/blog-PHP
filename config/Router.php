@@ -10,7 +10,7 @@ class Router{
     private $errorController;
     private $backController;
     private $request;
-    
+
     public function __construct()
     {
         $this->request = new Request();
@@ -24,7 +24,10 @@ class Router{
         $route = $this->request->getGet()->get('route');
         try{
             if (isset($route)){
-                if ($route  === 'article'){
+                if($route === 'novel'){
+                    $this->frontController->novel();
+                }
+                else if ($route  === 'article'){
                     $this->frontController->article($this->request->getGet()->get('id'));
                 }
                 else if($route === 'administration'){
@@ -55,8 +58,9 @@ class Router{
                     $this->frontController->register($this->request->getPost());
                 }
                 else if($route === 'login'){
-                    $this->frontController->loginAuto();
-                    $this->frontController->login($this->request->getPost());
+                    header("Location: index.php");
+                    //$this->frontController->loginAuto();
+                    //$this->frontController->login($this->request->getPost());
                 }
                 else if($route === 'logout'){
                     $this->backController->logout();
@@ -72,12 +76,6 @@ class Router{
                 }
                 else if($route === 'deleteUser'){
                     $this->backController->deleteUser($this->request->getGet()->get('userId'));
-                }
-                else if($route === 'novel'){
-                    $this->frontController->novel();
-                }
-                else if($route === 'biography'){
-                    $this->frontController->biography();
                 }
                 else{
                     $this->errorController->errorNotFound();

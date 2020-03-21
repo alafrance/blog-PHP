@@ -1,30 +1,35 @@
 <?php
 $this->title = "Article";
+$this->css = 'article';
 ?>
-<?= $this->session->show('add_comment'); ?>
-<article>
-    <h2><?= htmlspecialchars($article->getTitle());?></h2>
-    <p><?= $article->getContent();?></p>
-    <p><?= htmlspecialchars($article->getAuthor());?></p>
-    <p>Créé le : <?= htmlspecialchars($article->getDate());?></p>
-</article>
+
+<section class=" single">
+    <?= $this->session->showAlert('add_comment', 'success'); ?>
+    <article>
+        <h2 class="center"><?= htmlspecialchars($article->getTitle());?></h2>
+        <p class="justify"><?= $article->getContent();?></p>
+        <p class="author"><?= htmlspecialchars($article->getAuthor());?></p>
+        <p class="date">Créé le : <?= htmlspecialchars($article->getDate());?></p>
+    </article>
+</section>
 
 <section id="comments">
 <?php
     if ($this->session->get('pseudo')){
-        echo '<h3>Ajouter un commentaire</h3>';
+        echo '<h3 class="underline">Ajouter un commentaire</h3>';
         include('forms/form_comment.php');
     }
 ?>
 
-    <h3>Commentaires</h3>
+    <div class="allComment">
+        <h3 class="underline">Commentaires</h3>
 <?php
     foreach ($comments as $comment)
     {
 ?>
         <h4><?= htmlspecialchars($comment->getPseudo());?></h4>
         <p><?= htmlspecialchars($comment->getContent());?></p>
-        <p>Posté le <?= htmlspecialchars($comment->getDate());?></p>
+        <p class="date">Posté le <?= htmlspecialchars($comment->getDate());?></p>
 <?php
          if($comment->isFlag()) {
             echo '<p>Ce commentaire a déjà été signalé</p>';
@@ -35,5 +40,7 @@ $this->title = "Article";
         }
    }
 ?>
+    </div>
+
 </section>
 

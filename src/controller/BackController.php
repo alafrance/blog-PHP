@@ -119,22 +119,22 @@ class BackController extends Controller
                     'comments' => $comments,
                     'post' => $post,
                     'errors' => $errors
-                ]);                    
-            }    
+                ]);
+            }
         }
     }
     public function deleteComment($commentId){
         if ($this->checkAdmin()){
             $this->commentDAO->deleteComment($commentId);
             $this->session->set('delete_article', 'Le commentaire a été supprimé');
-            header('Location: ../public/index.php?route=administration');    
+            header('Location: ../public/index.php?route=administration');
         }
     }
     public function unflagComment($commentId){
         if ($this->checkAdmin()){
             $this->commentDAO->unflagComment($commentId);
             $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé');
-            header('Location: ../public/index.php?route=administration');    
+            header('Location: ../public/index.php?route=administration');
         }
     }
     public function profile(){

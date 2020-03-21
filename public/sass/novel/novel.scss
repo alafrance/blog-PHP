@@ -1,0 +1,25 @@
+@import '../font.scss';
+@import '../color.scss';
+@import '../buttons.scss';
+// Responsive general
+@import '../general.scss';
+
+
+.marginDiv{
+    margin-bottom: 20px;
+}
+
+.author, .date{
+    color: brown;
+}
+
+@media screen and (min-width: 993px){
+    .flexWrap{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 15px;
+    }
+    article{
+        width: 50%;
+    }
+}

@@ -3,9 +3,11 @@ namespace App\src\DAO;
 use PDO;
 use Exception;
 abstract class DAO{
-    const DB_HOST = 'mysql:host=localhost;dbname=blog;charset=utf8';
+    const DB_HOST = 'mysql:host=localhost';
+    const DB_NAME = 'dbname=blog';
+    const DB_CHARSET = 'charset=utf8';
     const DB_USER = 'root';
-    const DB_PASS = '';
+    const DB_PASS = 'root';
     private $db;
     
     private function checkDbConnect()
@@ -20,7 +22,7 @@ abstract class DAO{
   
     private function DbConnect(){
         try{
-            $this->db = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
+            $this->db = new PDO(self::DB_HOST . ';' . self::DB_NAME . ';' . self::DB_CHARSET, self::DB_USER, self::DB_PASS);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $this->db;
         } catch (Exception $e) {

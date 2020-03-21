@@ -25,14 +25,14 @@ class UserDAO extends DAO{
     }
     public function register(Parameter $post){
         $sql = 'INSERT INTO user (pseudo, password, dateCreation, role_id, email) VALUES(?, ?, NOW(), ?, ?) ';
-        $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_DEFAULT), 2, '']);
+        $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_DEFAULT), 2, $post->get('email')]);
     }
     public function checkUser(Parameter $post){
         $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo= ? ';
         $request = $this->createQuery($sql, [$post->get('pseudo')]);
         $isUnique = $request->fetchColumn();
         if ($isUnique){
-            return '<p>Le pseudo existe déja</p>';
+            return '<p class="center alert alert-warning">Le pseudo existe déja</p>';
         }
     }
     public function login(Parameter $post){

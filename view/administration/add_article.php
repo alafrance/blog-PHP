@@ -1,3 +1,9 @@
 <?php
 $this->title = "Nouvel article";
-include  ('../view/forms/form_article.php');
+$this->css = "editArticle";
+?>
+<section>
+<?php
+    include  ('../view/forms/form_article.php');
+?>
+</section>

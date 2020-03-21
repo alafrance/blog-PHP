@@ -1,0 +1,331 @@
+// Responsive font, colors and buttons
+@import 'font.scss';
+@import 'color.scss';
+@import 'buttons.scss';
+// Responsive general
+@import 'general.scss';
+
+
+/* --------------------- */
+/* ----- SLIDESHOW ----- */
+/* --------------------- */
+/* Container slider */
+#slideshow{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+.container-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+#slider {
+    display: flex;
+    width: 300%;
+    height: auto;
+    transition: 3s;
+    animation: 10s slide infinite;
+}
+.img-slide {
+    width: 100%;
+    height: auto;
+}
+#slider img{
+    display: block;
+    height: auto;
+    width: 100vw;
+}
+/* Texte slider */
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #E6EAEF;
+    h1.titleh1{
+        text-align: center;
+        position: relative;
+        color: #E6EAEF;
+        font-family: 'Valencia', Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 3rem;
+        span{
+            font-size: 3.5rem;
+        }
+    }
+    p{
+        position: relative;
+        font-size: 1.3rem;
+        font-family: 'Bitter', serif;
+    }
+    #linkNovel{
+        color: #E6EAEF;
+    }
+}
+.title h1, .title p, .title a{
+    z-index: 2;
+}
+@keyframes slide{
+    0%, 30%, 100% {
+        transform: translateX(0);
+    }
+    40%, 60% {
+        transform: translateX(-33.33%);
+    }
+    70%, 90% {
+        transform: translateX(-66.66%);
+    }
+}
+
+/* --------------------- */
+/* ----- BIOGRAPHY ----- */
+/* --------------------- */
+// Biographie général
+#biography{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+        
+        margin-top: 30px;
+    }
+    img{
+        height: auto;
+        border-radius: 50%;
+        margin-top: 30px;
+    }
+}
+// Bulle biographie mise en forme
+
+.pinched {
+    position: relative;
+    padding: 15px;
+    margin: 50px 0 3em;
+    text-align: center;
+    background: black;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 30px;
+
+    p{
+        margin: 1rem 0;
+        color: white;
+        &::after{
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 50%;
+            height: 20px;
+            background: $background;
+            -webkit-border-bottom-right-radius: 15px;
+            -moz-border-radius-bottomright: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        &::before{
+            content: "";
+            position: absolute;
+            top: -20px;
+            right: 0;
+            width: 50%;
+            height: 20px;
+            background: $background;
+            -webkit-border-bottom-left-radius: 15px;
+            -moz-border-radius-bottomleft: 15px;
+            border-bottom-left-radius: 15px;
+        }
+    }
+    &::before{
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        width: 100px;
+        height: 20px;
+        margin: 0 0 0 -50px;
+        background: black;
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 0;
+        width: 50%;
+        height: 20px;
+        background:$background;
+        -webkit-border-bottom-right-radius: 15px;
+        -moz-border-radius-bottomright: 15px;
+        border-bottom-right-radius: 15px;
+    }
+}
+/* --------------------- */
+/* ------- NOVEL ------- */
+/* --------------------- */
+// Novel
+
+// Image taille roman
+#novel {
+    img {
+        width: 30%;
+        }
+}
+// Mise en forme icone
+#icon{
+    display: flex;
+    justify-content: space-around;
+    i{
+        font-size: 2rem;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+}
+.marginH1{
+    margin-bottom: 20px;
+}
+// Flex icones, chapitre roman
+.chapter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 15px;
+}
+.allChapter{
+    display: flex;
+    align-items: center;
+}
+
+.livrePochette{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.buttonAllChapter{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+
+/* ---------------------- */
+/* ----- RESPONSIVE ----- */
+/* ---------------------- */
+
+/* Large screen */
+@media screen and (min-width: 993px){
+    .title {
+    position: absolute;
+    }
+    #navbar {
+        flex-direction: row-reverse;
+    }
+    .pinched{
+        width: 50%;
+    }
+    #icon div{
+       width: 33%;
+    }
+    .chapter{
+        width: 40%;
+    }
+    #biography img{
+        width: 40%;
+    }
+    .buttonAllChapter{
+        width: 100%;
+    }
+}
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 992px){
+    /* Slideshow */
+    .title {
+    position: absolute;
+    }
+    ul{
+        align-items: inherit;
+    }
+    .pinched{
+        width: 70%;
+    }
+    #icon{
+        align-items: center;
+        flex-direction: column;
+        div{
+            width: 100%;
+        }
+    }
+    #novel{
+        img{
+            width: 70%;
+        }
+    }
+    #biography{
+        img{
+            width: 70%;
+        }
+    }
+    .allChapter{
+        flex-direction: column;
+    }
+  }
+/* Mobile */
+@media screen and (max-width: 767px){
+    .title {
+        text-align: center;
+        a, p{
+            color: #000;
+        }
+        h1.titleh1{
+            color: #000;
+        }
+        a{
+            position: absolute;
+            bottom: 15%;
+        }
+
+    }
+    
+    #icon{
+        flex-direction: column;
+        align-items: center;
+        div{
+            width: 100%;
+        }
+    }
+    #biography{
+        img{
+            width: 90%;
+        }
+    }
+    #novel{
+        img{
+            width: 90%;
+        }
+    }
+    #slideshow{
+        background-color: $background;
+        .button{
+            margin-bottom: 30px;
+        }
+    }
+    .allChapter{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 360px){
+    .title{
+        h1{
+            span{
+                font-size: 3rem;
+            }
+        }
+    }
+}
+

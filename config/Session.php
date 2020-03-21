@@ -32,6 +32,19 @@ class Session
             return $key;
         }
     }
+    public function showAlert($name, $type)
+    {
+        if(isset($_SESSION[$name]))
+        {
+            $key = $this->get($name);
+            $this->remove($name);
+            if ($type === "success"){
+                return '<p class="alert alert-success center">' . $key . '</p>';
+            }else if($type === "error"){
+                return '<p class="alert alert-danger center">' . $key . '</p>';
+            }
+        }
+    }
 
     public function remove($name)
     {

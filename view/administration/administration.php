@@ -1,67 +1,113 @@
 <?php
 $this->title = 'Administration';
+$this->css = 'administration';
 ?>
-<?= $this->session->show('add_article');?>
-<?= $this->session->show('edit_article'); ?>
-<?= $this->session->show('delete_article');?>
-<?= $this->session->show('unflag_comment');?>
-<?= $this->session->show('delete_user'); ?>
-<h2>Articles</h2>
-<a href='../public/index.php?route=addArticle'>Ajouter un article</a>
-<?php
-foreach ($articles as $article)
-{
-?>
-    <div>
-        <h3>Chapitre <?= $article->getNumberChapter();?> :</h3>
-        <p><?= htmlspecialchars($article->getTitle());?></p>
-        <h3>Contenu : </h3>
-        <p><?= substr($article->getContent(), 0, 100);?>...</p>
-        <h3>Crée le :</h3>
-        <p><?= htmlspecialchars($article->getDate());?></p>
-        <h3>Actions : </h3>
-        <a href='../public/index.php?route=article&id=<?= htmlspecialchars($article->getId());?>'>Accéder à l'article</a>
-        <a href="../public/index.php?route=editArticle&id=<?= $article->getId(); ?>">Modifier</a>
-        <a href="../public/index.php?route=deleteArticle&id=<?= $article->getId(); ?>">Supprimer</a>
+
+<section>
+    <?= $this->session->showAlert('add_article', 'success');?>
+    <?= $this->session->showAlert('edit_article', 'success'); ?>
+    <?= $this->session->showAlert('delete_article', 'success');?>
+    <?= $this->session->showAlert('unflag_comment', 'success');?>
+    <?= $this->session->showAlert('delete_user', 'success'); ?>
+    <div class="center addArticle">
+        <h2 class='center '>Ajouter un Article</h2>
+        <a href='../public/index.php?route=addArticle' class='button button-primary '>Ajouter</a>
     </div>
-<?php
-    }
-?>
+    <div class="actionArticle center">
+        <h2 class="center">Actions Articles</h2>
+        <table>
+        <tr>
+            <td>Chapitre</td>
+            <td>Nom du chapitre</td>
+            <td>Contenu</td>
+            <td>Date de création</td>
+            <td>Actions</td>
+        </tr>
+        <?php
+            foreach ($articles as $article)
+            {
+            ?>
+                <tr>
+                    <td>Chapitre <?= $article->getNumberChapter();?> :</td>
+                    <td><?= htmlspecialchars($article->getTitle());?></td>
+                    <td><?= strip_tags(substr($article->getContent(), 0, 100));?>...</td>
+                    <td><?= htmlspecialchars($article->getDate());?></td>
+                    <td>
+                        <a href='../public/index.php?route=article&id=<?= htmlspecialchars($article->getId());?>' class="button button-secondary">Accéder à l'article</a><br>
+                        <a href="../public/index.php?route=editArticle&id=<?= $article->getId(); ?>" class="button button-secondary">Modifier</a><br>
+                        <a href="../public/index.php?route=deleteArticle&id=<?= $article->getId(); ?>" class="button button-secondary">Supprimer</a>
+                    </td>
+                </tr>
+            <?php
+                }
+            ?>
+        </table>
+    </div>
 
-<h2>Commentaires signalés</h2>
-<?php
-foreach ($comments as $comment) {
-?>
-    <h3>Pseudo : </h3>
-    <p><?= htmlspecialchars($comment->getPseudo());?></p>
-    <h3>Commentaires : </h3>
-    <p><?=  htmlspecialchars(substr($comment->getContent(), 0, 100));?></p>
-    <h3>Crée le  : </h3>
-    <p><?=  htmlspecialchars($comment->getDate());?></p>
-    <h3>Actions</h3>
-    <a href='../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>'>Désignaler ce commentaire</a><br>
-    <a href='../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>'>Supprimer ce commentaire</a>
+</section>
 
-<?php
-}
-?>
-<h2>Utilisateurs</h2>
-<?php
-foreach ($users as $user){
-?>
-    <h3>Pseudo : </h3>
-    <p><?= htmlspecialchars($user->getPseudo());?></p>
-    <h3>Date de création : </h3>
-    <p><?= htmlspecialchars($user->getDateCreation());?></p>
-    <h3>Rôle : </h3>
-    <p><?= htmlspecialchars($user->getRole());?></p>
-    <h3>Actions</h3>
-<?php
-    if ($user->getRole() != 'admin'){
-?>
-    <a href="../public/index.php?route=deleteUser&userId=<?= $user->getId();?>">Supprimer</a>
-<?php
+<section class='center commentary'>
+    <h2 class="center">Commentaires signalés</h2>
+    <?php
+    if (empty($comments)){
+        echo '<p>' . 'Aucun commentaire signalé' . '</p>';
     }else{
-        echo 'Suppression impossible';
+?>
+        <table>
+            <tr>
+                <td>Pseudo</td>
+                <td>Commentaire</td>
+                <td>Actions</td>
+            </tr>
+<?php
+        foreach ($comments as $comment) {
+?>
+                <td><?= htmlspecialchars($comment->getPseudo());?></td>
+                <td><?=  htmlspecialchars(substr($comment->getContent(), 0, 100));?></td>
+                <td><?=  htmlspecialchars($comment->getDate());?></td>
+                <td>
+                    <a href='../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>' class="button-secondary button">Désignaler ce commentaire</a><br>
+                    <a href='../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>' class="button-secondary button">Supprimer ce commentaire</a>
+                </td>
+
+
+<?php
+            }
     }
-}
+?>
+        </table>
+
+
+</section>
+
+<section class="center user">
+    <h2>Utilisateurs</h2>
+    <table>
+        <tr>
+            <td>Pseudo</td>
+            <td>Date de création</td>
+            <td>Rôle</td>
+            <td>Actions</td>
+        </tr>
+    <?php
+    foreach ($users as $user){
+    ?>
+        <tr>
+            <td><?= htmlspecialchars($user->getPseudo());?></td>
+            <td><?= htmlspecialchars($user->getDateCreation());?></td>
+            <td><?= htmlspecialchars($user->getRole());?></td>
+    <?php
+        if ($user->getRole() != 'admin'){
+    ?>
+            <td><a href="../public/index.php?route=deleteUser&userId=<?= $user->getId();?>" class="button button-secondary">Supprimer</td>
+    <?php
+        }else{
+            echo '<td>Suppression impossible</td>';
+        }
+    }
+    ?>
+        </tr>
+    </table>
+
+</section>
+

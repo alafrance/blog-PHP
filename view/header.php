@@ -1,22 +1,38 @@
-<header style="display:flex;justify-content: space-between;">
-    <a href="../public/index.php">Page d'accueil</a>
-    <a href='../public/index.php?route=novel'>Billet simple pour l'Alaska</a>
-    <a href='../public/index.php?route=biography'>Biographie Jean Forteroche</a>
+<nav class="navbar navbar-expand-lg navbar-light" id="naviguation">
+    <a href="../public/index.php?route=novel" id="blog">Billet simple pour l'Alaska</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item " >
+                <a class="nav-link" href="../public/index.php" id="home">Accueil</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="../public/index.php?route=novel" id="chapter">Mes chapitres</a>
+            </li>
 <?php
-    if ($this->session->get('pseudo')){
+            if ($this->session->get('pseudo')){
 ?>
-        <a href='../public/index.php?route=profile'>Profil</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href='../public/index.php?route=profile' id="profile">Profil</a>
+                </li>
 <?php
-        if($this->session->get('role') === 'admin') {
+                if($this->session->get('role') === 'admin') {
 ?>
-            <a href="../public/index.php?route=administration">Administration</a>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="../public/index.php?route=administration" id="admin">Administration</a>
+                    </li>
 <?php
-        }
-    }else {
+                }
+            }else {
 ?>
-    <a href='../public/index.php?route=login'>Connexion</a>
-    <a href='../public/index.php?route=register'>Inscription</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../public/index.php?route=login" id="backend">Inscription/ Connexion</a>
+                </li>
 <?php
-    }
+            }
 ?>
-</header>
+        </ul>
+    </div>
+</nav>

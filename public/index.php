@@ -25,12 +25,8 @@ require '../config/Parameter.php';
 require '../config/Request.php';
 require '../config/Router.php';
 require '../config/Session.php';
-require '../config/dev.php';
 require '../config/Cookie.php';
-session_start();
-?>
 
-<?php
+session_start();
 $router = new \App\config\Router();
 $router->run();
-
