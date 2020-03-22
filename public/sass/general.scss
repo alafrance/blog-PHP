@@ -8,6 +8,7 @@
         color: $header;
     }
 }
+
 nav#naviguation{
     position: fixed;
     top: 0px;
@@ -31,6 +32,9 @@ h1{
     color: darken($title, 100%);
     font-weight: bold;
 }
+h1, h2{
+    color: #332e3c;
+}
 h2, h3{
     font-family: 'Patua One', cursive;
 }
@@ -42,7 +46,6 @@ article{
    color: $paragraphe;
     }
     h1, h2, h3{
-        color: $title;
         font-style: italic;
     }
 }
@@ -72,6 +75,21 @@ nav{
 .center{
     text-align: center;
 }
+.allSize{
+    width: 100%;
+}
+
+//footer
+footer{
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+
+}
+
 
 //Responsive header
 @media screen and (max-width: 767px){

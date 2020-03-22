@@ -16,7 +16,6 @@ $this->css = 'login';
             <ul>
                 <li>Une majuscule</li>
                 <li>Un chiffre</li>
-                <li>Un caractère spécial</li>
                 <li>8 caractères</li>
             </ul>
             <?= isset($errors['password']) ? $errors['password'] : ''; ?>

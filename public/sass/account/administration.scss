@@ -16,12 +16,14 @@ div.addArticle{
     margin-bottom: 30px ;
     padding-top: 15px;
 }
-div.actionArticle{
-    margin: 15px;
+.miseEnFormeTable{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+div.actionArticle{
+    margin: 15px;
     h2{
         margin-bottom: 30px;
     }
@@ -33,12 +35,9 @@ a.button{
 
 section.commentary{
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 section.user{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
     margin-bottom: 30px;
     h2{
         margin-bottom: 15px;

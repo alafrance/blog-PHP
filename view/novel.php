@@ -6,21 +6,21 @@ $i = 0;
 <section>
     <h1 class="center">Bienvenue sur la page dédié à "Billet simple pour l'Alaska"</h1>
     <p class="center">Vous pouvez lire n'importe quel chapitre et même commentez !</p>
-    <div class="flexWrap">
+    <div class="container-fluid novel">
 <?php
     foreach ($articles as $article)
     {
         $i += 1;
         ?>
-        <article class="chapter">
-            <h2 class="center underline">Chapitre <?= $i ?> : <?= htmlspecialchars($article->getTitle());?></h2>
-            <div class="center marginDiv">
-                    <p class="center justify"><?= strip_tags(substr($article->getContent(), 0, 1000));?>...</p>
-                    <a class="button button-secondary" href="../public/index.php?route=article&id=<?= htmlspecialchars($article->getId());?>">Lire la suite</a>
-            </div>
-            <p class="author center">Ecrit par <?= htmlspecialchars($article->getAuthor());?></p>
-            <p class="date center">Créé le : <?= htmlspecialchars($article->getDate());?></p>
-        </article>
+            <article>
+                <a href="../public/index.php?route=article&id=<?= $articles[$i]->getId()?>" class="col-12 chapter scale" id="linkNovel">
+                    <h2 class="center underline">Chapitre <?= $i ?> : <?= htmlspecialchars($article->getTitle());?></h2>
+                    <img src="../public/img/blog/<?= $article->getImage();?>" alt="image chapitre <?= $i?>" class="col-lg-12 col-xl-10 col-md-12 col-sm-12">
+                </a>
+            </article>
+            <a href="../public/index.php?route=article&id=<?= $articles[$i]->getId()?>" class="button button-primary" >Lire le chapitre</a>
+
+
         <?php
     }
 ?>

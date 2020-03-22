@@ -58,9 +58,8 @@ class Router{
                     $this->frontController->register($this->request->getPost());
                 }
                 else if($route === 'login'){
-                    header("Location: index.php");
-                    //$this->frontController->loginAuto();
-                    //$this->frontController->login($this->request->getPost());
+                    $this->frontController->loginAuto();
+                    $this->frontController->login($this->request->getPost());
                 }
                 else if($route === 'logout'){
                     $this->backController->logout();
@@ -76,6 +75,9 @@ class Router{
                 }
                 else if($route === 'deleteUser'){
                     $this->backController->deleteUser($this->request->getGet()->get('userId'));
+                }
+                else if ($route === 'mention'){
+                    header("Location: ../view/mention.php");
                 }
                 else{
                     $this->errorController->errorNotFound();

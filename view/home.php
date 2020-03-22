@@ -30,6 +30,32 @@ $this->css = "home";
     </div>
 </section>
 
+
+<section id="novel">
+    <h1 class='underline uppercase center titleColor2'>Billet simple pour l'alaska</h1>
+    <div class="allChapter">
+<?php
+        $i = 1;
+        while ($i != 4){
+?>
+            <div class="chapter">
+                <a href="../public/index.php?route=article&id=<?= $articles[$i]->getId()?>" class="scale">
+                    <h2 class="capitalize underline center titleColor2"> Chapitre <?= $i ?> : <?= $articles[$i]->getTitle();?></h2>
+                    <img src="../public/img/blog/<?= $articles[$i]->getImage()?>" alt="image chapitre <?= $i?>">
+                </a>
+            </div>
+<?php
+        $i++;
+        }
+?>
+    </div>
+    <div class="allSize center">
+        <a class="buttonAllChapter button button-secondary center" href="../public/index.php?route=novel">Voir tous les chapitres</a>
+
+    </div>
+    
+</section>
+
 <section id="biography">
     <h1 class="uppercase underline">biographie</h1>
     <img src="img/portrait.jpg">
@@ -43,57 +69,6 @@ $this->css = "home";
             Mais pas de panique ! Vous pourrez le lire en format papier dès sa sortie (28 juin 2020).
         </p>
     </div>
-
 </section>
-<section id="novel">
-    <h1 class="center underline marginH1 uppercase">Billet simple pour l'Alaska :</h1>
-    <article id="icon">
-        <div class="center justify">
-            <i class="fas fa-book"></i>
-            <h2 class="uppercase">gratuit</h2>
-            <p>
-                Vous pourrez lire TOUT mon livre gratuitement sur ce blog.<br>
-                J'ai une page dédié à chaque chapitre.<br>
-                En plus vous pourrez commentez chaque chapitre !
-            </p>
-        </div>
 
-        <div class="center justify">
-            <i class="fas fa-heart center"></i>
-            <h2 class="uppercase">amour</h2>
-            <p>
-                Ce roman raconte l'histoire de deux amoureux. Vous allez être bouleversés en connaissant leur histoire.<br>
-                Chaque moment en leur compagnie est drôle, et entrainant.<br>
-            </p>
-        </div>
 
-        <div class="center justify">
-            <i class="fas fa-plane center"></i>
-            <h2 class="uppercase">voyage</h2>
-            <p>
-                Vous allez voyager avec eux !<br>
-                Chaque moment passé à lire est un voyage<br>
-                Vous apprendrez plein de choses sur l'Alaska<br>
-            </p>
-        </div>
-    </article>
-    <div class="livrePochette">
-        <img src="img/livre.jpg" class="center">
-    </div>
-    <div class="allChapter">
-<?php
-        $i = 1;
-        while ($i != 4){
-?>
-        <article class="chapter">
-            <h2 class="capitalize underline center"><?= $articles[$i]->getTitle();?></h2>
-            <p  class="center justify"><?= strip_tags(substr($articles[$i]->getContent(), 0, 600));?>...<br/>
-            <a class="button button-secondary" href="../public/index.php?route=article&id=<?= $articles[$i]->getId()?>">Lire la suite</a>
-        </article>
-<?php
-        $i++;
-        }
-?>
-    </div>
-    <a class="buttonAllChapter button button-primary center" href="../public/index.php?route=novel">Voir tous les chapitres</a>
-</section>

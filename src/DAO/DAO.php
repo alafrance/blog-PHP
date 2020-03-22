@@ -9,7 +9,7 @@ abstract class DAO{
     const DB_USER = 'root';
     const DB_PASS = 'root';
     private $db;
-    
+
     private function checkDbConnect()
     {
         //Vérifie si la connexion est nulle et fait appel à getConnection()
@@ -19,7 +19,7 @@ abstract class DAO{
         //Si la connexion existe, elle est renvoyée, inutile de refaire une connexion
         return $this->db;
     }
-  
+
     private function DbConnect(){
         try{
             $this->db = new PDO(self::DB_HOST . ';' . self::DB_NAME . ';' . self::DB_CHARSET, self::DB_USER, self::DB_PASS);
@@ -39,7 +39,7 @@ abstract class DAO{
         }
         $request = $this->checkDbConnect()->query($sql);
         return $request;
-    }    
-    
+    }
+
 }
 

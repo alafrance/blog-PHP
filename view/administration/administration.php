@@ -13,7 +13,7 @@ $this->css = 'administration';
         <h2 class='center '>Ajouter un Article</h2>
         <a href='../public/index.php?route=addArticle' class='button button-primary '>Ajouter</a>
     </div>
-    <div class="actionArticle center">
+    <div class="miseEnFormeTable center">
         <h2 class="center">Actions Articles</h2>
         <table>
         <tr>
@@ -46,7 +46,7 @@ $this->css = 'administration';
 
 </section>
 
-<section class='center commentary'>
+<section class='center commentary miseEnFormeTable'>
     <h2 class="center">Commentaires signalés</h2>
     <?php
     if (empty($comments)){
@@ -57,11 +57,13 @@ $this->css = 'administration';
             <tr>
                 <td>Pseudo</td>
                 <td>Commentaire</td>
+                <td>Date</td>
                 <td>Actions</td>
             </tr>
 <?php
         foreach ($comments as $comment) {
 ?>
+            <tr>
                 <td><?= htmlspecialchars($comment->getPseudo());?></td>
                 <td><?=  htmlspecialchars(substr($comment->getContent(), 0, 100));?></td>
                 <td><?=  htmlspecialchars($comment->getDate());?></td>
@@ -69,6 +71,7 @@ $this->css = 'administration';
                     <a href='../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>' class="button-secondary button">Désignaler ce commentaire</a><br>
                     <a href='../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>' class="button-secondary button">Supprimer ce commentaire</a>
                 </td>
+            </tr>
 
 
 <?php
@@ -80,7 +83,7 @@ $this->css = 'administration';
 
 </section>
 
-<section class="center user">
+<section class="center miseEnFormeTable user">
     <h2>Utilisateurs</h2>
     <table>
         <tr>

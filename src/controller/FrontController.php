@@ -61,9 +61,9 @@ class FrontController extends Controller
     }
     public function login(Parameter $post){
         if ($post->get('submit')){
-            //$result = $this->userDAO->login($post);
-            //if ($result && $result['isPasswordValid']){
-                /*if ($post->get('auto')){
+            $result = $this->userDAO->login($post);
+        if ($result && $result['isPasswordValid']){
+                if ($post->get('auto')){
                     $this->cookie->set('pseudo', $post->get('pseudo'));
                     $this->cookie->set('password', $result['result']['password']);
                 }
@@ -71,15 +71,15 @@ class FrontController extends Controller
                 $this->session->set('id', $result['result']['id']);
                 $this->session->set('role', $result['result']['name']);
                 $this->session->set('pseudo', $post->get('pseudo'));
-                */
+                
                 header('Location: ../public/index.php');
-            //}
-            //else{
-            //    $this->session->set('error_login', 'Le pseudo ou le mot de passe est incorrecte');
-            //    return $this->view->render('login', [
-            //        'post' => $post
-             //   ]);
-            //}
+            }
+            else{
+                $this->session->set('error_login', 'Le pseudo ou le mot de passe est incorrecte');
+               return $this->view->render('login', [
+                    'post' => $post
+                   ]);
+            }
         }else{
             return $this->view->render('login');
         }

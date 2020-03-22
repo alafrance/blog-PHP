@@ -12,6 +12,7 @@ class ArticleDAO extends DAO{
         $article->setDate($row['date']);
         $article->setAuthor($row['author']);
         $article->setNumberChapter($row['numberChapter']);
+        $article->setImage($row['image']);
         return $article;
     }
     public function getArticles(){
@@ -20,7 +21,7 @@ class ArticleDAO extends DAO{
         $articles = [];
         foreach ($request as $row){
             $id = $row['id'];
-            $articles[$id] = $this->buildObject($row); 
+            $articles[$id] = $this->buildObject($row);
         }
         $request->closeCursor();
         return $articles;
@@ -34,16 +35,17 @@ class ArticleDAO extends DAO{
     }
     public function addArticle(Parameter $post)
     {
-        $sql = 'INSERT INTO article (title, content, numberChapter, date) VALUES (?, ?, ?, NOW())';
-        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('numberChapter')]);
+        $sql = 'INSERT INTO article (title, content, numberChapter, date, image) VALUES (?, ?, ?, NOW())';
+        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('numberChapter'), '']);
     }
-    
+
     public function editArticle(Parameter $post, $articleId)
     {
-        $sql = 'UPDATE article SET title=:title, content=:content WHERE id=:articleId';
+        $sql = 'UPDATE article SET title=:title, content=:content, image:image WHERE id=:articleId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
             'content' => $post->get('content'),
+            'image'=> $post->get('image'),
             'articleId' => $articleId
         ]);
     }

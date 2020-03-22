@@ -15,6 +15,7 @@
 <body>
     <?php include '../view/header.php'?>
     <?= $content ?>
+    <?php include '../view/footer.php'?>
 </body>
 </html>
 

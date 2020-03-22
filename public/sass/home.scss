@@ -5,6 +5,10 @@
 // Responsive general
 @import 'general.scss';
 
+/* -------------------- */
+/* ----- GENERAL  ----- */
+/* -------------------- */
+
 
 /* --------------------- */
 /* ----- SLIDESHOW ----- */
@@ -63,9 +67,7 @@
         font-size: 1.3rem;
         font-family: 'Bitter', serif;
     }
-    #linkNovel{
-        color: #E6EAEF;
-    }
+    
 }
 .title h1, .title p, .title a{
     z-index: 2;
@@ -82,6 +84,50 @@
     }
 }
 
+
+/* --------------------- */
+/* ------- NOVEL ------- */
+/* --------------------- */
+// Novel
+
+a.scale{
+    transform: scale(1);
+    transition: transform 500ms;
+    &:hover {
+        transform: scale(1.10);
+    }
+}
+#novel{
+    margin-top: 50px;
+    a{
+        text-decoration: none;
+    }
+    .allChapter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .chapter {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 15px;
+        }
+    }
+    .buttonAllChapter{
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+}
+
+.marginH1{
+    margin-bottom: 20px;
+}
+// Flex icones, chapitre roman
+
+
+
 /* --------------------- */
 /* ----- BIOGRAPHY ----- */
 /* --------------------- */
@@ -91,7 +137,6 @@
     flex-direction: column;
     align-items: center;
     h1{
-        
         margin-top: 30px;
     }
     img{
@@ -163,57 +208,30 @@
         border-bottom-right-radius: 15px;
     }
 }
-/* --------------------- */
-/* ------- NOVEL ------- */
-/* --------------------- */
-// Novel
-
-// Image taille roman
-#novel {
-    img {
-        width: 30%;
-        }
+.sectionicon{
+    margin-top: 50px;
 }
-// Mise en forme icone
-#icon{
+#icon {
     display: flex;
     justify-content: space-around;
+    margin-top: 50px;
+    h2{
+        font-size: 2.6rem;
+    }
+    .heart{
+        color: #f92a82
+    }
+    .plane{
+        color: #30bced;
+    }
+    .book{
+        color: #8c4843;
+    }
     i{
-        font-size: 2rem;
-        margin-top: 30px;
-        margin-bottom: 20px;
+        font-size: 2.5rem;
+        margin: 10px;
     }
 }
-.marginH1{
-    margin-bottom: 20px;
-}
-// Flex icones, chapitre roman
-.chapter {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 15px;
-}
-.allChapter{
-    display: flex;
-    align-items: center;
-}
-
-.livrePochette{
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.buttonAllChapter{
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-
-
 /* ---------------------- */
 /* ----- RESPONSIVE ----- */
 /* ---------------------- */
@@ -222,6 +240,9 @@
 @media screen and (min-width: 993px){
     .title {
     position: absolute;
+    }
+    #linkNovel{
+        color: #E6EAEF;
     }
     #navbar {
         flex-direction: row-reverse;
@@ -233,13 +254,17 @@
        width: 33%;
     }
     .chapter{
-        width: 40%;
+        width: 33%;
+        img{
+            width: 640px;
+            height: 427px;
+        }
     }
     #biography img{
         width: 40%;
     }
     .buttonAllChapter{
-        width: 100%;
+        width: 90%;
     }
 }
 /* Tablet */
@@ -280,14 +305,10 @@
     .title {
         text-align: center;
         a, p{
-            color: #000;
+            color: $title;
         }
         h1.titleh1{
-            color: #000;
-        }
-        a{
-            position: absolute;
-            bottom: 15%;
+            color: $title;
         }
 
     }
@@ -304,11 +325,6 @@
             width: 90%;
         }
     }
-    #novel{
-        img{
-            width: 90%;
-        }
-    }
     #slideshow{
         background-color: $background;
         .button{
@@ -317,6 +333,15 @@
     }
     .allChapter{
         flex-direction: column;
+    }
+    .chapter{
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+    .buttonAllChapter{
+        text-align: center;
     }
 }
 @media screen and (max-width: 360px){
