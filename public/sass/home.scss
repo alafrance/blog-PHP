@@ -236,7 +236,7 @@ a.scale{
 /* ----- RESPONSIVE ----- */
 /* ---------------------- */
 
-/* Large screen */
+/* Normal screen */
 @media screen and (min-width: 993px){
     .title {
     position: absolute;
@@ -265,6 +265,16 @@ a.scale{
     }
     .buttonAllChapter{
         width: 90%;
+    }
+}
+
+/* adapt screen for novel */
+@media screen and (min-width: 993px) and (max-width: 2019px){
+    #novel{
+        .allChapter{
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
     }
 }
 /* Tablet */

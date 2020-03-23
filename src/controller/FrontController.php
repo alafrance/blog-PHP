@@ -1,5 +1,4 @@
 <?php
-
 namespace App\src\controller;
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
@@ -71,7 +70,6 @@ class FrontController extends Controller
                 $this->session->set('id', $result['result']['id']);
                 $this->session->set('role', $result['result']['name']);
                 $this->session->set('pseudo', $post->get('pseudo'));
-                
                 header('Location: ../public/index.php');
             }
             else{
@@ -89,6 +87,14 @@ class FrontController extends Controller
         return $this->view->render('novel', [
             'articles' => $articles
         ]);
+    }
+    public function mention(){
+        return $this->view->render('mention');
+    }
+    public function acceptCookie(){
+        $this->cookie->set('acceptCookie', 'true');
+        $articles = $this->articleDAO->getArticles();
+        header("Location: index.php");
     }
 
 }

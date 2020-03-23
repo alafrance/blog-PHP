@@ -20,6 +20,7 @@ require '../src/constraint/Constraint.php';
 require '../src/constraint/CommentValidation.php';
 require '../src/constraint/ArticleValidation.php';
 require '../src/constraint/UserValidation.php';
+require '../src/constraint/ImageValidation.php';
 
 require '../config/Parameter.php';
 require '../config/Request.php';

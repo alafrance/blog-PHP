@@ -14,6 +14,8 @@
 <body>
     <?php include '../view/header.php'?>
     <?= $content ?>
+    <?php include '../view/banniereCookie.php';?>
     <?php include '../view/footer.php'?>
+
 </body>
 </html>

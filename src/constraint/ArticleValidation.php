@@ -6,7 +6,7 @@ use App\config\Parameter;
 class ArticleValidation extends Validation {
     private $errors = [];
     private $constraint;
-    
+
     public function __construct() {
         $this->constraint = new Constraint();
     }
@@ -25,16 +25,17 @@ class ArticleValidation extends Validation {
             $error = $this->checkContent($name, $value);
             $this->addError($name, $error);
         }
-        
+
         else if ($name === 'numberChapter'){
             $error = $this->checkNumberChapter($name, $value);
             $this->addError($name, $error);
         }
+
     }
     private function addError($name, $error){
         if ($error){
             $this->errors += [
-               $name => $error 
+               $name => $error
             ];
         }
     }
@@ -57,12 +58,14 @@ class ArticleValidation extends Validation {
            return $this->constraint->minLength('contenu', $value, 2);
        }
     }
-       
+
     private function checkNumberChapter($name, $value){
         if ($this->constraint->notBlank($name, $value)){
             return $this->constraint->notBlank('chapitre', $value);
         }
     }
+
     
+
 }
 

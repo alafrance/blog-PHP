@@ -18,7 +18,10 @@ class Validation {
             $errors = $userValidation->check($data);
             return $errors;
         }
+        else if($name === 'Image'){
+            $imageValidation = new ImageValidation();
+            $errors = $imageValidation->checkImage($data);
+            return $errors;
+        }
     }
-   
 }
- 

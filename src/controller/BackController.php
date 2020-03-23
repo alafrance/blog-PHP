@@ -11,7 +11,6 @@ class BackController extends Controller
         if (!($this->session->get('pseudo'))){
             $this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette page');
             header('Location: ../public/index.php?route=login');
-            
         }else{
             return true;
         }
@@ -37,16 +36,41 @@ class BackController extends Controller
             ]);
         }
     }
+    public function upload_image($name){
+        if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
+        {
+                // Testons si le fichier n'est pas trop gros
+                if ($_FILES['image']['size'] <= 1000000)
+                {
+                        // Testons si l'extension est autorisée
+                        $infosfichier = pathinfo($_FILES['image']['name']);
+                        $extension_upload = $infosfichier['extension'];
+                        $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
+                        if (in_array($extension_upload, $extensions_autorisees))
+                        {
+                                // On peut valider le fichier et le stocker définitivement
+                                move_uploaded_file($_FILES['image']['tmp_name'], '../public/img/blog/' . basename($_FILES['image']['name']));
+                                return basename($_FILES['image']['name']);
+                        }
+                }
+        }
+    }
      public function addArticle(Parameter $post)
     {
          if ($this->checkAdmin()){
             if($post->get('submit')) {
+                // On gère les erreurs
                $errors = $this->validation->validate($post, 'Article');
                if ($this->articleDAO->checkNumberChapter($post)){
                    $errors['numberChapter'] = $this->articleDAO->checkNumberChapter($post);
                }
+               if ($this->validation->validate('image', 'Image')){
+                   $errors['image'] = $this->validation->validate('image', 'Image');
+               }
+               // On envoie sur le serveur
                if(!$errors) {
-                   $this->articleDAO->addArticle($post);
+                   $image = $this->upload_image('image');
+                   $this->articleDAO->addArticle($post, $image);
                    $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
                    header('Location: ../public/index.php?route=administration');
                }
@@ -55,18 +79,23 @@ class BackController extends Controller
                    'errors' => $errors
                ], 'tinymce');
             }
-            return $this->view->renderTemplate('administration/add_article', [], 'tinymce');    
+            return $this->view->renderTemplate('administration/add_article', [], 'tinymce');
          }
-        
+
     }
     public function editArticle(Parameter $post, $articleId)
     {
         if ($this->checkAdmin()){
             $article = $this->articleDAO->getArticle($articleId);
             if($post->get('submit')) {
+                // On gère les erreurs
                 $errors = $this->validation->validate($post, 'Article');
+                $errors['image'] = $this->validation->validate('image', 'Image');
+
+               // On envoie sur le serveur
                 if (!$errors){
-                    $this->articleDAO->editArticle($post,  $articleId);
+                    $image = upload_image();
+                    $this->articleDAO->editArticle($post,  $articleId, $image);
                     $this->session->set('edit_article', 'L\' article a bien été modifié');
                     header('Location: ../public/index.php?route=administration');
                 }
@@ -79,7 +108,7 @@ class BackController extends Controller
 
             return $this->view->renderTemplate('administration/edit_article', [
                 'post' => $post
-            ], 'tinymce');    
+            ], 'tinymce');
         }
     }
    public function deleteArticle($articleId)
@@ -87,20 +116,20 @@ class BackController extends Controller
        if ($this->checkAdmin()){
             $this->articleDAO->deleteArticle($articleId);
             $this->session->set('delete_article', 'L\' article a bien été supprimé');
-            header('Location: ../public/index.php?route=administration');    
+            header('Location: ../public/index.php?route=administration');
        }
     }
     public function deleteAccount(){
         if ($this->checkAdmin()){
             $this->userDAO->deleteAccount($this->session->get('pseudo'));
-            $this->logoutOrDelete('delete_account');   
+            $this->logoutOrDelete('delete_account');
         }
     }
     public function deleteUser($userId){
         if ($this->checkAdmin()){
             $this->userDAO->deleteUser($userId);
             $this->session->set('delete_user', 'L\'utilisateur a été supprimé');
-            header('Location: ../public/index.php?route=administration');    
+            header('Location: ../public/index.php?route=administration');
         }
     }
     public function addComment($post, $articleId){
@@ -161,7 +190,7 @@ class BackController extends Controller
             }
             return $this->view->render('administration/update_password', [
                 'errors' => $errors
-            ]);    
+            ]);
         }
     }
     public function logout(){
@@ -171,7 +200,7 @@ class BackController extends Controller
             $this->cookie->remove('password');
         }
     }
-    
+
     private function logoutOrDelete($param)
     {
         if ($this->checkLoggedIn()){
@@ -182,8 +211,8 @@ class BackController extends Controller
             } else {
                 $this->session->set($param, 'Votre compte a bien été supprimé');
             }
-            header('Location: ../public/index.php');    
+            header('Location: ../public/index.php');
         }
     }
-    
+
 }

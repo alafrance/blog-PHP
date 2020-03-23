@@ -77,7 +77,10 @@ class Router{
                     $this->backController->deleteUser($this->request->getGet()->get('userId'));
                 }
                 else if ($route === 'mention'){
-                    header("Location: ../view/mention.php");
+                    $this->frontController->mention();
+                }
+                else if ($route === 'acceptCookie'){
+                    $this->frontController->acceptCookie();
                 }
                 else{
                     $this->errorController->errorNotFound();
