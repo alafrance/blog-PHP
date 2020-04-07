@@ -39,13 +39,12 @@ class ArticleDAO extends DAO{
         $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('numberChapter'), $image]);
     }
 
-    public function editArticle(Parameter $post, $articleId, $image)
+    public function editArticle(Parameter $post, $articleId)
     {
-        $sql = 'UPDATE article SET title=:title, content=:content, image:image WHERE id=:articleId';
+        $sql = 'UPDATE article SET title=:title, content=:content WHERE id=:articleId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
             'content' => $post->get('content'),
-            'image'=> $image,
             'articleId' => $articleId
         ]);
     }

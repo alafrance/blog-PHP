@@ -2,7 +2,7 @@
 namespace App\src\controller;
 
 use App\src\DAO\ArticleDAO;
-use App\src\model\View;
+use App\config\View;
 use App\config\Parameter;
 
 class BackController extends Controller
@@ -37,25 +37,10 @@ class BackController extends Controller
         }
     }
     public function upload_image($name){
-        if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
-        {
-                // Testons si le fichier n'est pas trop gros
-                if ($_FILES['image']['size'] <= 1000000)
-                {
-                        // Testons si l'extension est autorisée
-                        $infosfichier = pathinfo($_FILES['image']['name']);
-                        $extension_upload = $infosfichier['extension'];
-                        $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
-                        if (in_array($extension_upload, $extensions_autorisees))
-                        {
-                                // On peut valider le fichier et le stocker définitivement
-                                move_uploaded_file($_FILES['image']['tmp_name'], '../public/img/blog/' . basename($_FILES['image']['name']));
-                                return basename($_FILES['image']['name']);
-                        }
-                }
-        }
+        move_uploaded_file($_FILES['image']['tmp_name'], '../public/img/blog/' . basename($_FILES['image']['name']));
+        return basename($_FILES['image']['name']);
     }
-     public function addArticle(Parameter $post)
+    public function addArticle(Parameter $post)
     {
          if ($this->checkAdmin()){
             if($post->get('submit')) {
@@ -90,12 +75,10 @@ class BackController extends Controller
             if($post->get('submit')) {
                 // On gère les erreurs
                 $errors = $this->validation->validate($post, 'Article');
-                $errors['image'] = $this->validation->validate('image', 'Image');
 
                // On envoie sur le serveur
                 if (!$errors){
-                    $image = upload_image();
-                    $this->articleDAO->editArticle($post,  $articleId, $image);
+                    $this->articleDAO->editArticle($post,  $articleId);
                     $this->session->set('edit_article', 'L\' article a bien été modifié');
                     header('Location: ../public/index.php?route=administration');
                 }

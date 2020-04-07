@@ -13,7 +13,7 @@ class ImageValidation extends Validation{
             $error = $this->checkImage($name);
             $this->addError($name, $error);
         }
-        return $errors;
+        return $this->errors;
     }
 
     private function addError($name, $error){

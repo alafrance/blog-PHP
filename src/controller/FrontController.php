@@ -2,7 +2,7 @@
 namespace App\src\controller;
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
-use App\src\model\View;
+use App\config\View;
 
 use App\config\Parameter;
 class FrontController extends Controller

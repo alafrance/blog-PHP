@@ -8,7 +8,7 @@ class Constraint{
         }
     }
     public function notBlankImage($name){
-        if (!isset($_FILES[$name])){
+        if (!isset($_FILES[$name]) &&  $_FILES[$name]['error'] == 4){
             return '<p class="alert alert-danger center">Aucune image a été saisi</p>';
         }
     }

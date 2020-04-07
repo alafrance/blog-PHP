@@ -7,8 +7,8 @@ abstract class DAO{
     const DB_NAME = 'dbname=blog';
     const DB_CHARSET = 'charset=utf8';
     const DB_USER = 'root';
-    const DB_PASS = 'root';
-    private $db;
+    const DB_PASS = '';
+    private $db ;
 
     private function checkDbConnect()
     {

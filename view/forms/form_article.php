@@ -17,11 +17,14 @@ $submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
             <?= isset($errors['numberChapter']) ? $errors['numberChapter'] : ''; ?>
         </div>
 
+        <?php if(isset($addArticle)){ ?>
         <div class="inputAndLabel"> 
             <label for='image'>Image</label><br>
             <input type="file" id="image" name="image">
             <?= isset($errors['image']) ? $errors['image'] : ''; ?>
         </div>
+        <?php }?>
+
 
     </div>
 

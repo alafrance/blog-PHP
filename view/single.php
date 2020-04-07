@@ -7,7 +7,7 @@ $this->css = 'single';
     <?= $this->session->showAlert('add_comment', 'success'); ?>
     <article id="single">
         <h2 class="center underline"><?= htmlspecialchars($article->getTitle());?></h2>
-        <img src="../public/img/blog/<?= $article->getImage();?>" alt="image chapitre <?= $i?>" class="col-lg-12 col-xl-10 col-md-12 col-sm-12">
+        <img src="../public/img/blog/<?= $article->getImage();?>" alt="image chapitre" class="col-lg-12 col-xl-10 col-md-12 col-sm-12">
         <p class=""><?= $article->getContent();?></p>
         <p class="author"><?= htmlspecialchars($article->getAuthor());?></p>
         <p class="date">Créé le : <?= htmlspecialchars($article->getDate());?></p>

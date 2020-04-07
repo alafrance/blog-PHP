@@ -17,13 +17,13 @@ $this->css = "home";
     <div class="container-slider">
         <div id="slider">
             <div class="img-slide">
-                <img src="img/slider/snow.jpg">
+                <img src="img/slider/snow.jpg" alt="Image slider forêt enneigé">
             </div>
             <div class="img-slide">
-                <img src="img/slider/winterIsComing.jpg">
+                <img src="img/slider/winterIsComing.jpg" alt="Image slider maison et route enneigé">
             </div>
             <div class="img-slide">
-                <img src="img/slider/alaska-baleines.jpg">
+                <img src="img/slider/alaska-baleines.jpg" alt="Image slider baleine alaska">
             </div>
 
         </div>
@@ -58,7 +58,7 @@ $this->css = "home";
 
 <section id="biography">
     <h1 class="uppercase underline">biographie</h1>
-    <img src="img/portrait.jpg">
+    <img src="img/portrait.jpg" alt="Portrait Jean Forteroche">
     <div class="pinched">
         <p>
             Jean Forteroche est né le 13 juillet 1985.
