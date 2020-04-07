@@ -6,7 +6,7 @@ $this->css = 'single';
 <section class="single container">
     <?= $this->session->showAlert('add_comment', 'success'); ?>
     <article id="single">
-        <h1 class="center underline"><?= htmlspecialchars($article->getTitle());?></h1>
+        <h2 class="center underline"><?= htmlspecialchars($article->getTitle());?></h2>
         <img src="../public/img/blog/<?= $article->getImage();?>" alt="image chapitre" class="col-lg-12 col-xl-10 col-md-12 col-sm-12">
         <?= $article->getContent();?>
         <p class="author"><?= htmlspecialchars($article->getAuthor());?></p>
@@ -22,7 +22,7 @@ $this->css = 'single';
 ?>
 
         <div id="comments">
-            <h2 class="underline">Commentaires</h2>
+            <h3 class="underline">Commentaires</h3>
 <?php
         if (empty($comments)){
             echo '<p>Aucun commentaire. Soyez le premier à écrire !</p>';
@@ -30,7 +30,7 @@ $this->css = 'single';
         foreach ($comments as $comment)
         {
 ?>
-            <h3 class="uppercase"><?= htmlspecialchars($comment->getPseudo());?></h3>
+            <h4 class="uppercase"><?= htmlspecialchars($comment->getPseudo());?></h4>
             <p><?= htmlspecialchars($comment->getContent());?></p>
             <p class="date">Posté le <?= htmlspecialchars($comment->getDate());?></p>
 <?php
