@@ -153,8 +153,6 @@ a.scale{
     margin: 50px 0 3em;
     text-align: center;
     background: black;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
     border-radius: 30px;
 
     p{
@@ -168,8 +166,6 @@ a.scale{
             width: 50%;
             height: 20px;
             background: $background;
-            -webkit-border-bottom-right-radius: 15px;
-            -moz-border-radius-bottomright: 15px;
             border-bottom-right-radius: 15px;
         }
         &::before{
@@ -180,8 +176,6 @@ a.scale{
             width: 50%;
             height: 20px;
             background: $background;
-            -webkit-border-bottom-left-radius: 15px;
-            -moz-border-radius-bottomleft: 15px;
             border-bottom-left-radius: 15px;
         }
     }
@@ -203,8 +197,6 @@ a.scale{
         width: 50%;
         height: 20px;
         background:$background;
-        -webkit-border-bottom-right-radius: 15px;
-        -moz-border-radius-bottomright: 15px;
         border-bottom-right-radius: 15px;
     }
 }

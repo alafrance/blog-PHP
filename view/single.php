@@ -6,9 +6,9 @@ $this->css = 'single';
 <section class="single container">
     <?= $this->session->showAlert('add_comment', 'success'); ?>
     <article id="single">
-        <h2 class="center underline"><?= htmlspecialchars($article->getTitle());?></h2>
+        <h1 class="center underline"><?= htmlspecialchars($article->getTitle());?></h1>
         <img src="../public/img/blog/<?= $article->getImage();?>" alt="image chapitre" class="col-lg-12 col-xl-10 col-md-12 col-sm-12">
-        <p class=""><?= $article->getContent();?></p>
+        <?= $article->getContent();?>
         <p class="author"><?= htmlspecialchars($article->getAuthor());?></p>
         <p class="date">Créé le : <?= htmlspecialchars($article->getDate());?></p>
     </article>
@@ -16,13 +16,13 @@ $this->css = 'single';
 
 <?php
         if ($this->session->get('pseudo')){
-            echo '<h3 class="underline">Ajouter un commentaire</h3>';
+            echo '<h2 class="underline">Ajouter un commentaire</h2>';
             include('forms/form_comment.php');
         }
 ?>
 
         <div id="comments">
-            <h3 class="underline">Commentaires</h3>
+            <h2 class="underline">Commentaires</h2>
 <?php
         if (empty($comments)){
             echo '<p>Aucun commentaire. Soyez le premier à écrire !</p>';
@@ -30,7 +30,7 @@ $this->css = 'single';
         foreach ($comments as $comment)
         {
 ?>
-            <h4 class="uppercase"><?= htmlspecialchars($comment->getPseudo());?></h4>
+            <h3 class="uppercase"><?= htmlspecialchars($comment->getPseudo());?></h3>
             <p><?= htmlspecialchars($comment->getContent());?></p>
             <p class="date">Posté le <?= htmlspecialchars($comment->getDate());?></p>
 <?php

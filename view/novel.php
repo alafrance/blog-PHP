@@ -13,7 +13,7 @@ $i = 0;
         $i += 1;
         ?>
             <article>
-                <a href="../public/index.php?route=article&id=<?= $article->getId()?>" class="col-12 chapter scale" id="linkNovel">
+                <a href="../public/index.php?route=article&id=<?= $article->getId()?>" class="col-12 chapter scale" class="linkNovel">
                     <h2 class="center underline">Chapitre <?= $i ?> : <?= htmlspecialchars($article->getTitle());?></h2>
                     <img src="../public/img/blog/<?= $article->getImage();?>" alt="image chapitre <?= $i?>" class="col-lg-12 col-xl-10 col-md-12 col-sm-12">
                 </a>

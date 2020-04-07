@@ -17,7 +17,7 @@ $this->css = "login";
             <label for="password">Mot de passe</label><br>
             <input type="password" id="password" name="password"><br>
 
-            <input type="checkbox" name="auto">
+            <input type="checkbox" name="auto" id="automatique">
             <label for="automatique">Connexion automatique</label><br>
 
 
